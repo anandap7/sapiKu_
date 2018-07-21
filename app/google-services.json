@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "667428024730",
+    "firebase_url": "https://sapiku-test.firebaseio.com",
+    "project_id": "sapiku-test",
+    "storage_bucket": "sapiku-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667428024730:android:bc120d364bd56f01",
+        "android_client_info": {
+          "package_name": "com.ndondot.sapiku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667428024730-t4e41jcrplkap2bb0h1udqsea5uej348.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ndondot.sapiku",
+            "certificate_hash": "1bd4a46de63db593fd188d574771780fddc3314a"
+          }
+        },
+        {
+          "client_id": "667428024730-k1b7n10thgba015g2rmjd7dasgjgok7s.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "667428024730-k1b7n10thgba015g2rmjd7dasgjgok7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZyKK9UNEeSCASIwKf0DNSmP2uDMrJRxI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667428024730-k1b7n10thgba015g2rmjd7dasgjgok7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

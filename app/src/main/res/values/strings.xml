@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">sapiKu</string>
+
+    <string name="title_home">Daftar Sapi</string>
+    <string name="title_nearest">Sapi Terdekat</string>
+    <string name="title_filter">Filter</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_profile">Profil</string>
+
+    <string name="hello_home_fragment">Fragment HOME</string>
+    <string name="hello_nearest_fragment">Fragment NEAREST</string>
+    <string name="hello_filter_fragment">Fragment FILTER</string>
+    <string name="hello_history_fragment">Fragment HISTORY</string>
+    <string name="hello_profile_fragment">Fragment PROFILE</string>
+
+    <string-array name="title">
+        <item>Daftar Sapi</item>
+        <item>Sapi Terdekat</item>
+        <item>Filter</item>
+        <item>Riwayat</item>
+        <item>Profil</item>
+    </string-array>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_pw">Lupa kata sandi?</string>
+    <string name="sign_in">Masuk</string>
+    <string name="sign_up">Daftar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="email">E-mail</string>
+    <string name="phone_num">Nomor Telepon</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="progress">Loading</string>
+</resources>

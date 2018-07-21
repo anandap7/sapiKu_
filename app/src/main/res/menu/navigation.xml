@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_nearest"
+        android:icon="@mipmap/nearest"
+        android:title="@string/title_nearest" />
+
+    <item
+        android:id="@+id/navigation_filter"
+        android:icon="@mipmap/filter"
+        android:title="@string/title_filter" />
+
+    <item
+        android:id="@+id/navigation_history"
+        android:icon="@mipmap/history"
+        android:title="@string/title_history" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@mipmap/profile"
+        android:title="@string/title_profile" />
+</menu>
