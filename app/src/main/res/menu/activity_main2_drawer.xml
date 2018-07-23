@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@mipmap/ic_person_black_24dp"
+            android:title="Sign In" />
+        <item
+            android:id="@+id/nav_notifikasi"
+            android:icon="@drawable/baseline_notifications_active_black_18"
+            android:title="Notifikasi" />
+        <item
+            android:id="@+id/nav_alamat"
+            android:icon="@mipmap/ic_address_book"
+            android:title="Alamat" />
+        <item
+            android:id="@+id/nav_riwayat"
+            android:icon="@mipmap/history"
+            android:title="Riwayat" />
+        <item
+            android:id="@+id/nav_pengaturan"
+            android:icon="@mipmap/ic_setting_gears"
+            android:title="Pengaturan"/>
+        <item
+            android:id="@+id/nav_faq"
+            android:icon="@mipmap/ic_faq"
+            android:title="FAQ"/>
+        <item
+            android:id="@+id/nav_tentang_kami"
+            android:title="Tentang Kami"/>
+    </group>
+
+</menu>

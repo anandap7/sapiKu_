@@ -5,22 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.ndondot.sapiku.Adapter.PeternakAdapter;
-import com.ndondot.sapiku.Adapter.PeternakModel;
 import com.ndondot.sapiku.Fragment.FilterFragment;
 import com.ndondot.sapiku.Adapter.FragmentAdapter;
 import com.ndondot.sapiku.Fragment.HistoryFragment;
 import com.ndondot.sapiku.Fragment.HomeFragment;
 import com.ndondot.sapiku.Fragment.NearestFragment;
-import com.ndondot.sapiku.Fragment.ProfileFragment;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.ndondot.sapiku.Fragment.ColaborationFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_history:
                         viewPager.setCurrentItem(3);
                         break;
-                    case R.id.navigation_profile:
+                    case R.id.navigation_colaboration:
                         viewPager.setCurrentItem(4);
                         break;
                 }
@@ -94,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragmet(new NearestFragment());
         adapter.addFragmet(new FilterFragment());
         adapter.addFragmet(new HistoryFragment());
-        adapter.addFragmet(new ProfileFragment());
+        adapter.addFragmet(new ColaborationFragment());
         viewPager.setAdapter(adapter);
     }
 }

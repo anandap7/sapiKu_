@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -41,7 +41,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBd0rGWLmmx0QH6RG3TBk5GQcGEKySCuig" />
 
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".DetailSapiActivity"></activity>
     </application>
 
 </manifest>

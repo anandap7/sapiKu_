@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ndondot.sapiku.DetailSapiActivity;
 import com.ndondot.sapiku.R;
 
 import java.util.List;
@@ -43,7 +44,13 @@ public class PeternakAdapter extends RecyclerView.Adapter<PeternakAdapter.ViewHo
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext.getApplicationContext(), posting.getmId(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext.getApplicationContext(), posting.getmId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DetailSapiActivity.class);
+                intent.putExtra("nama",posting.getmNama());
+                intent.putExtra("umur",posting.getmUmur());
+                intent.putExtra("harga",posting.getmHarga());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
             }
         });
     }
