@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/colorPrimary"
+    android:id="@+id/view_signIn"
     tools:context=".SignInActivity">
 
     <ImageView
@@ -29,11 +30,11 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:hint="@string/username"
+                android:hint="@string/email"
                 android:inputType="text" />
 
             <EditText

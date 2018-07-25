@@ -12,16 +12,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ndondot.sapiku.Adapter.FragmentAdapter;
 import com.ndondot.sapiku.Fragment.FilterFragment;
 import com.ndondot.sapiku.Fragment.HistoryFragment;
 import com.ndondot.sapiku.Fragment.HomeFragment;
 import com.ndondot.sapiku.Fragment.NearestFragment;
 import com.ndondot.sapiku.Fragment.ColaborationFragment;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,7 +40,11 @@ public class Main2Activity extends AppCompatActivity
     ViewPager viewPager;
     MenuItem prevMenuItem;
     CircleImageView mPhotoAccount;
+    TextView mNameAccount;
+    NavigationView navigationView;
+
     FirebaseUser user;
+    DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +52,11 @@ public class Main2Activity extends AppCompatActivity
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.logo));
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         setTitle(getResources().getStringArray(R.array.title)[0]);
 
-        mPhotoAccount = findViewById(R.id.photo_account_id);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
@@ -56,7 +66,10 @@ public class Main2Activity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
+        mPhotoAccount = view.findViewById(R.id.photo_account_id);
+        mNameAccount = view.findViewById(R.id.name_account);
         navigationView.setNavigationItemSelectedListener(this);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -108,6 +121,8 @@ public class Main2Activity extends AppCompatActivity
 
         setupViewPager(viewPager);
 
+        getDataAccount();
+
     }
 
     @Override
@@ -143,7 +158,7 @@ public class Main2Activity extends AppCompatActivity
 
         if (user!=null){
             if (id == R.id.nav_account) {
-                startActivity(new Intent(this,SignInActivity.class));
+                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_notifikasi) {
 
             } else if (id == R.id.nav_alamat) {
@@ -156,15 +171,18 @@ public class Main2Activity extends AppCompatActivity
 
             } else if (id == R.id.nav_tentang_kami){
 
+            } else if (id == R.id.nav_signOut){
+                signOut();
             }
 
         }else{
             if (id == R.id.nav_account) {
-                Toast.makeText(this, "Not Login", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,SignInActivity.class));
             } else if (id == R.id.nav_notifikasi) {
 
             } else if (id == R.id.nav_alamat) {
-
+                DatabaseReference ref = mRef.child("coba");
+                ref.child("1").setValue("coba");
             } else if (id == R.id.nav_riwayat) {
 
             } else if (id == R.id.nav_pengaturan) {
@@ -172,6 +190,8 @@ public class Main2Activity extends AppCompatActivity
             } else if (id == R.id.nav_faq) {
 
             } else if (id == R.id.nav_tentang_kami){
+
+            } else if ((id== R.id.nav_signOut)){
 
             }
 
@@ -191,6 +211,35 @@ public class Main2Activity extends AppCompatActivity
         adapter.addFragmet(new HistoryFragment());
         adapter.addFragmet(new ColaborationFragment());
         viewPager.setAdapter(adapter);
+    }
+
+    public void getDataAccount(){
+        if (user!=null){
+            String uId = user.getUid();
+            DatabaseReference ref = mRef.child("pembeli").child(uId);
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child("namaLengkap").getValue(String.class);
+                    String imageUri = dataSnapshot.child("imageUri").getValue(String.class);
+                    Picasso.get().load(imageUri).into(mPhotoAccount);
+                    mNameAccount.setText(name);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
+    public void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        Intent signOut = new Intent(Main2Activity.this, Main2Activity.class);
+        signOut.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(signOut);
+        finish();
     }
 
 }

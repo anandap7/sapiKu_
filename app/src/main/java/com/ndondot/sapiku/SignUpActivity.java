@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     RelativeLayout progress;
     Drawable validated;
 
+    private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth;
 
     @Override
@@ -42,6 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
         password_confirm = findViewById(R.id.password_confirm);
         signup = findViewById(R.id.sign_up);
         progress = findViewById(R.id.relative_layout_progress);
+
+        mAuth = FirebaseAuth.getInstance();
 
         validated = getResources().getDrawable(R.drawable.validated);
         validated.setBounds(0, 0, validated.getIntrinsicWidth(), validated.getIntrinsicHeight());
@@ -139,11 +145,13 @@ public class SignUpActivity extends AppCompatActivity {
                 if (validate()) {
                     showProgress(true);
                     register();
+//                    if (mUser!=null){
+//                        writeIntoDB();
+//                    }
                 }
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
     }
 
     private void register() {
@@ -155,20 +163,20 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         try {
                             showProgress(false);
-                            Toast.makeText(SignUpActivity.this, sEmail + " , " + sPassword, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(SignUpActivity.this, sEmail + " , " + sPassword, Toast.LENGTH_SHORT).show();
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUpActivity.this);
-                                alertDialogBuilder.setTitle("Signup");
-                                alertDialogBuilder.setMessage("Your account has been registered. Please sign in use your username and password.");
-                                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.dismiss();
-                                        finish();
-                                    }
-                                });
-                                alertDialogBuilder.show();
+                                String uId = mAuth.getCurrentUser().getUid();
+                                String namaLengkap = full_name.getText().toString();
+                                String sEmail = mAuth.getCurrentUser().getEmail();
+                                String noPhone = phone.getText().toString();
+
+                                DatabaseReference ref = mRootRef.child("pembeli").child(uId);
+                                ref.child("namaLengkap").setValue(namaLengkap);
+                                ref.child("email").setValue(sEmail);
+                                ref.child("phone").setValue(noPhone);
+                                ref.child("imageUri").setValue("https://firebasestorage.googleapis.com/v0/b/sapiku-test.appspot.com/o/uploads%2Fman.png?alt=media&token=fac2bcbb-80e5-40f9-8a57-7047ab0e9978");
+                                popUpNotif();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 final Snackbar snackbar = Snackbar.make(findViewById(R.id.frame_main2), "registered has been failed! Please try again.", Snackbar.LENGTH_INDEFINITE);
@@ -220,5 +228,19 @@ public class SignUpActivity extends AppCompatActivity {
         if (sPassword_confirm.isEmpty())
             password_confirm.setError("Kolom harus diisi");
         return !sFull_name.isEmpty() && !sPhone.isEmpty() && !sEmail.isEmpty() && !sPassword.isEmpty() && !sPassword_confirm.isEmpty();
+    }
+
+    public void popUpNotif(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUpActivity.this);
+        alertDialogBuilder.setTitle("Signup");
+        alertDialogBuilder.setMessage("Your account has been registered. Please sign in use your username and password.");
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                finish();
+            }
+        });
+        alertDialogBuilder.show();
     }
 }

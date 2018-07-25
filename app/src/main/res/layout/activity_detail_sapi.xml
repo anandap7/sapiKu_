@@ -7,105 +7,111 @@
     android:background="@color/white"
     tools:context=".DetailSapiActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/image_sapi"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/sapiperah"
-                android:scaleType="centerCrop"/>
-
-            <TextView
-                android:id="@+id/detail_nama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PT. Sapi"
-                android:textSize="30sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_gravity="bottom"
-                android:layout_margin="10dp"/>
-        </FrameLayout>
-
-        <android.support.v7.widget.CardView
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
-                <TextView
-                    android:id="@+id/detail_jenis"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis         : Sapi Brahman"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/detail_umur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Umur         :"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/detail_alamat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat      :"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/detail_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gender      :"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/detail_harga"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Harga        :"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+            android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp">
-            <LinearLayout
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_sapi"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/sapiperah"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/detail_nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PT. Sapi"
+                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"/>
+            </FrameLayout>
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Deskripsi"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/detail_jenis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis         : Sapi Brahman"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/detail_umur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Umur         :"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/detail_alamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat      :"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/detail_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender      :"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/detail_harga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Harga        :"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Deskripsi....."
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deskripsi"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:id="@+id/detail_deskripsi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deskripsi....."
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/detail_buy_button"

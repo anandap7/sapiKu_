@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ndondot.sapiku.DetailSapiActivity;
 import com.ndondot.sapiku.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,18 +38,17 @@ public class PeternakAdapter extends RecyclerView.Adapter<PeternakAdapter.ViewHo
     public void onBindViewHolder(PeternakAdapter.ViewHolder holder, int position) {
         final PeternakModel posting = listPeternak.get(position);
 
-        holder.id.setText(posting.getmId());
         holder.nama.setText(posting.getmNama());
         holder.umur.setText(posting.getmUmur());
-        holder.harga.setText(posting.getmHarga());
+        holder.harga.setText("Rp. "+posting.getmHarga());
+        Picasso.get().load(posting.getmGambar()).into(holder.image);
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(mContext.getApplicationContext(), posting.getmId(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, DetailSapiActivity.class);
-                intent.putExtra("nama",posting.getmNama());
-                intent.putExtra("umur",posting.getmUmur());
-                intent.putExtra("harga",posting.getmHarga());
+                intent.putExtra("peternakId",posting.getmId());
+                intent.putExtra("sapiId",posting.getmIdSapi());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }

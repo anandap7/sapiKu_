@@ -35,7 +35,7 @@
                     android:id="@+id/info"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="1.72"
                     android:orientation="vertical">
 
                     <TextView
@@ -65,7 +65,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_weight="1"
+                    android:layout_weight="1.25"
                     android:layout_gravity="center">
 
                     <TextView
@@ -82,7 +82,8 @@
                         android:text="Detail"
                         android:background="@color/colorPrimary"
                         android:textSize="10sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:layout_gravity="end"/>
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
