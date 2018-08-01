@@ -16,6 +16,7 @@ import com.ndondot.sapiku.DetailSapiActivity;
 import com.ndondot.sapiku.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class PeternakAdapter extends RecyclerView.Adapter<PeternakAdapter.ViewHolder> {
@@ -40,7 +41,10 @@ public class PeternakAdapter extends RecyclerView.Adapter<PeternakAdapter.ViewHo
 
         holder.nama.setText(posting.getmNama());
         holder.umur.setText(posting.getmUmur());
-        holder.harga.setText("Rp. "+posting.getmHarga());
+        double amount= Double.parseDouble(posting.getmHarga());
+        DecimalFormat format = new DecimalFormat("#,###");
+        String harga = format.format(amount);
+        holder.harga.setText("Rp. "+harga);
         Picasso.get().load(posting.getmGambar()).into(holder.image);
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override

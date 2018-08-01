@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ public class SignInActivity extends AppCompatActivity {
     Button mSignInBtn,mSignUpBtn;
     TextView mForgotPwd;
     FirebaseAuth mAuth;
+
+    private String TAG = "SignIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +57,14 @@ public class SignInActivity extends AppCompatActivity {
         String email = mEmailText.getText().toString();
         String password = mPasswordText.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    Log.d(TAG, "signInWithEmail:success");
                     finish();
                 }else{
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
                     final Snackbar snackbar = Snackbar.make(findViewById(R.id.view_signIn), "sign in has been failed! Please try again.", Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction("OK", new View.OnClickListener() {
                         @Override

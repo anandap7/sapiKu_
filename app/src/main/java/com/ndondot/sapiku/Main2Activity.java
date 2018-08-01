@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ndondot.sapiku.Adapter.FragmentAdapter;
+import com.ndondot.sapiku.Fragment.BlankFragment;
 import com.ndondot.sapiku.Fragment.FilterFragment;
 import com.ndondot.sapiku.Fragment.HistoryFragment;
 import com.ndondot.sapiku.Fragment.HomeFragment;
@@ -206,7 +207,7 @@ public class Main2Activity extends AppCompatActivity
     public void setupViewPager(ViewPager viewPager){
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragmet(new HomeFragment());
-        adapter.addFragmet(new NearestFragment());
+        adapter.addFragmet(new BlankFragment());
         adapter.addFragmet(new FilterFragment());
         adapter.addFragmet(new HistoryFragment());
         adapter.addFragmet(new ColaborationFragment());

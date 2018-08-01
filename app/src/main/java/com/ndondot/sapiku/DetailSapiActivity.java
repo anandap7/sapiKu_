@@ -16,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+
 public class DetailSapiActivity extends AppCompatActivity {
     TextView mNamaText,mUmurText,mHargaText,mJenisText,mAlamatText,mGenderText,mDeskripsiText;
     ImageView mImageSapi;
@@ -99,6 +101,10 @@ public class DetailSapiActivity extends AppCompatActivity {
                 mUmur = dataSnapshot.child("umur").getValue(String.class);
                 mGender = dataSnapshot.child("gender").getValue(String.class);
                 mHarga = dataSnapshot.child("harga").getValue(String.class);
+                double amount= Double.parseDouble(mHarga);
+                DecimalFormat format = new DecimalFormat("#,###");
+                String harga = format.format(amount);
+
                 mDeskripsi = dataSnapshot.child("deskripsi").getValue(String.class);
                 mSapiUri = dataSnapshot.child("sapiUri").getValue(String.class);
 
@@ -106,7 +112,7 @@ public class DetailSapiActivity extends AppCompatActivity {
                 mJenisText.setText(hintJenis+mJenis);
                 mUmurText.setText(hintUmur+mUmur);
                 mGenderText.setText(hintGender+mGender);
-                mHargaText.setText(hintHarga+mHarga);
+                mHargaText.setText(hintHarga+harga);
                 mDeskripsiText.setText(mDeskripsi);
             }
 
