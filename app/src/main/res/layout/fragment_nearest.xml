@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="8dp"
     tools:context=".Fragment.NearestFragment">
 
-    <com.google.android.gms.maps.MapView
+    <TextView
+        android:id="@+id/latitude"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/map"/>
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.gms.maps.MapView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map"/>
+
+    </FrameLayout>
 
 
-</RelativeLayout>
+
+</LinearLayout>

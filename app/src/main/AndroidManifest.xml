@@ -47,7 +47,10 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".DetailSapiActivity"></activity>
+        <activity android:name=".DetailSapiActivity" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

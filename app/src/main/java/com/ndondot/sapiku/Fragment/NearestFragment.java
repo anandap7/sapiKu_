@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.ndondot.sapiku.Adapter.GPSTracker;
 import com.ndondot.sapiku.R;
 
 /**
@@ -31,21 +33,41 @@ public class NearestFragment extends Fragment implements OnMapReadyCallback {
     MapView mapView;
     GoogleMap gMap;
 
+    GPSTracker mGpsTracker;
+    TextView mLatitudeText, mLongitudeText;
+
     public NearestFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mGpsTracker = new GPSTracker(getContext());
+
+        mapView = (MapView) view.findViewById(R.id.map);
+        mLatitudeText = view.findViewById(R.id.latitude);
+        mLongitudeText = view.findViewById(R.id.longitude);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+
+        if (mGpsTracker.getIsGPSTrackingEnabled()){
+            String latitude = String.valueOf(mGpsTracker.getLatitude());
+            mLatitudeText.setText(latitude);
+
+            String longitude = String.valueOf(mGpsTracker.getLongitude());
+            mLongitudeText.setText(longitude);
+        }else{
+            mGpsTracker.showSettingsAlert();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_nearest, container, false);
-        mapView = (MapView) view.findViewById(R.id.map);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_nearest, container, false);
     }
 
     @Override
@@ -59,7 +81,6 @@ public class NearestFragment extends Fragment implements OnMapReadyCallback {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return;
         }
         gMap.setMyLocationEnabled(true);
         CameraUpdate cameraUpdate = null;

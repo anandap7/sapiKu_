@@ -207,7 +207,7 @@ public class Main2Activity extends AppCompatActivity
     public void setupViewPager(ViewPager viewPager){
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragmet(new HomeFragment());
-        adapter.addFragmet(new BlankFragment());
+        adapter.addFragmet(new NearestFragment());
         adapter.addFragmet(new FilterFragment());
         adapter.addFragmet(new HistoryFragment());
         adapter.addFragmet(new ColaborationFragment());

@@ -51,4 +51,5 @@
     <string name="filter_jumlah_kolab">Jumlah Kolaborasi</string>
     <string name="filter_harga">Harga</string>
     <string name="filter_atur_lokasi">Atur Lokasi Anda Saat ini</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
