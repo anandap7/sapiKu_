@@ -1,6 +1,10 @@
 package com.ndondot.sapiku.Adapter;
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,6 +27,7 @@ public class PeternakAdapter extends RecyclerView.Adapter<PeternakAdapter.ViewHo
 
     private Context mContext;
     private List<PeternakModel> listPeternak;
+    private FragmentManager fragmentManager;
 
     public PeternakAdapter(Context mContext, List<PeternakModel> listPeternak) {
         this.mContext = mContext;
@@ -49,7 +54,6 @@ public class PeternakAdapter extends RecyclerView.Adapter<PeternakAdapter.ViewHo
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(mContext.getApplicationContext(), posting.getmId(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, DetailSapiActivity.class);
                 intent.putExtra("peternakId",posting.getmId());
                 intent.putExtra("sapiId",posting.getmIdSapi());

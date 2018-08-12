@@ -73,6 +73,7 @@ public class Main2Activity extends AppCompatActivity
         mNameAccount = view.findViewById(R.id.name_account);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -124,6 +125,9 @@ public class Main2Activity extends AppCompatActivity
 
         getDataAccount();
 
+        if (getIntent().getStringExtra("status") == "true") {
+            viewPager.setCurrentItem(4);
+        }
     }
 
     @Override
@@ -158,6 +162,7 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         if (user!=null){
+            navigationView.getMenu().findItem(R.id.nav_signOut).setVisible(true);
             if (id == R.id.nav_account) {
                 Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_notifikasi) {
@@ -165,7 +170,7 @@ public class Main2Activity extends AppCompatActivity
             } else if (id == R.id.nav_alamat) {
 
             } else if (id == R.id.nav_riwayat) {
-
+                viewPager.setCurrentItem(3);
             } else if (id == R.id.nav_pengaturan) {
 
             } else if (id == R.id.nav_faq) {
@@ -174,11 +179,13 @@ public class Main2Activity extends AppCompatActivity
 
             } else if (id == R.id.nav_signOut){
                 signOut();
+                navigationView.getMenu().findItem(R.id.nav_signOut).setVisible(false);
             }
 
         }else{
             if (id == R.id.nav_account) {
                 startActivity(new Intent(this,SignInActivity.class));
+                finish();
             } else if (id == R.id.nav_notifikasi) {
 
             } else if (id == R.id.nav_alamat) {

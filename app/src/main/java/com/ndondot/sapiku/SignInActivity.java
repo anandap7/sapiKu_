@@ -62,6 +62,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Log.d(TAG, "signInWithEmail:success");
+                    startActivity(new Intent(getApplicationContext(), Main2Activity.class));
                     finish();
                 }else{
                     Log.w(TAG, "signInWithEmail:failure", task.getException());

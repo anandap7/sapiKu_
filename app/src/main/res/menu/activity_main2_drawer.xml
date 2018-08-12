@@ -33,7 +33,8 @@
             android:title="Tentang Kami"/>
         <item
             android:id="@+id/nav_signOut"
-            android:title="Sign Out"/>
+            android:title="Sign Out"
+            android:visible="false"/>
     </group>
 
 </menu>

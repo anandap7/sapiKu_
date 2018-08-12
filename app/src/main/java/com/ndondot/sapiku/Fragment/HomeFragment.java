@@ -1,6 +1,8 @@
 package com.ndondot.sapiku.Fragment;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ndondot.sapiku.Adapter.PeternakAdapter;
 import com.ndondot.sapiku.Adapter.PeternakModel;
+import com.ndondot.sapiku.MainActivity;
 import com.ndondot.sapiku.R;
 
 import java.util.ArrayList;
@@ -31,6 +36,8 @@ public class HomeFragment extends Fragment {
     private List<PeternakModel> listPeternak;
     private RecyclerView recyclerView;
     private PeternakAdapter peternakAdapter;
+
+    private Button detailButton;
 
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     private FirebaseUser mUser;
@@ -101,5 +108,4 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
 }

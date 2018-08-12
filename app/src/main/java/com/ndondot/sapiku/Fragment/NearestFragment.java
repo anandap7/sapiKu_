@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
@@ -98,13 +99,15 @@ public class NearestFragment extends Fragment implements OnMapReadyCallback {
             // for ActivityCompat#requestPermissions for more details.
         }
         mLocationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        Location mylocation = mLocationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        mLatitude =  mylocation.getLatitude();
+        mLongitude = mylocation.getLongitude();
+
         mLocationListener = new android.location.LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 mLatitude =  location.getLatitude();
                 mLongitude = location.getLongitude();
-//                mLatitudeText.setText("" + mLatitude);
-                mLongitudeText.setText(""+ mLongitude);
             }
 
             @Override
@@ -128,6 +131,20 @@ public class NearestFragment extends Fragment implements OnMapReadyCallback {
         loc2.setLatitude(mLatitude);
         loc2.setLongitude(mLongitude);
 
+        gMap.setMyLocationEnabled(true);
+        gMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLatitude, mLongitude),15));
+                addMarkers();
+                return true;
+            }
+        });
+        CameraUpdate cameraUpdate = null;
+        gMap.getUiSettings().setZoomControlsEnabled(true);
+    }
+
+    private void addMarkers(){
         final DatabaseReference ref = mRootRef.child("peternak");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -135,14 +152,17 @@ public class NearestFragment extends Fragment implements OnMapReadyCallback {
                 for (DataSnapshot user: dataSnapshot.getChildren()) {
                     final String sPeternakId = user.getKey();
                     final String sNamaPeternak = user.child("nama").getValue(String.class);
-                    DatabaseReference refLoc = ref.child("latlng");
-                    refLoc.addListenerForSingleValueEvent(new ValueEventListener() {
+                    DatabaseReference refLoc = ref.child(sPeternakId).child("latlng");
+                    refLoc.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Double latitude = dataSnapshot.child("latitude").getValue(Double.class);
-                            Double longitude = dataSnapshot.child("longitude").getValue(Double.class);
+                            String latitude = dataSnapshot.child("latitude").getValue(String.class);
+                            String longitude = dataSnapshot.child("longitude").getValue(String.class);
 
-                            gMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(sNamaPeternak));
+                            double dLatitude = Double.valueOf(latitude);
+                            double dLongitude = Double.valueOf(longitude);
+
+                            gMap.addMarker(new MarkerOptions().position(new LatLng(dLatitude,dLongitude)).title(sNamaPeternak));
                         }
 
                         @Override
@@ -158,10 +178,6 @@ public class NearestFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
-        gMap.setMyLocationEnabled(true);
-        CameraUpdate cameraUpdate = null;
-        gMap.getUiSettings().setZoomControlsEnabled(true);
     }
 
     @Override
